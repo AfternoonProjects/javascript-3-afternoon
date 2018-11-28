@@ -29,7 +29,17 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+  }
+  makeWidget() {
+    return this.first_name + " " + this.last_name + " " + "Widget";
+  }
+}
 
 
 
@@ -49,7 +59,17 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee{
+  constructor(first_name, last_name, email, age){
+    super (first_name, last_name, email, age);
+    this.reports =[];
+    }
+  hire(employee){this.reports.push(employee);
+    }
+  fire(i){this.reports.splice(i,1);
+    }
+}
+var shea = new Manager ("andrew", "montgomery", "nn@nn", 29);
 
 
 
@@ -75,7 +95,46 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager{
+  constructor(first,last,email,age){
+    super(first,last,email,age);
+    this.title = 'Not a manager';
+    this.bonus = 0;
+  
+  }
+  hire(employees){
+    
+    this.reports.push(employees);
+    if(this.reports.length >= 1 && this.reports.length <= 3){
+      this.title = 'Barely Manager';
+      return this.title;
+    }
+    else if(this.reports.length >= 4 && this.reports.length <= 10){
+      this.title = 'Mostly Manager';
+      return this.title;
+    }
+    else if(this.reports.length >= 11 && this.reports.length <= 50){
+      this.title = 'Manager';
+      return this.title;
+    }
+    else if(this.reports.length >= 51 && this.reports.length <= 100){
+      this.title = 'Manager Plus';
+      return this.title;
+    }
+    else if(this.reports.length >= 101){
+      this.title = 'Bestest Manager';
+      return this.title;
+    }
+    
+}
+
+  fire(){
+    this.reports.splice(this.index,1);
+    this.bonus += 100;
+  }
+}
+let progressive = new ProgressiveManager('this','progressive','manager@email.com',29);
+
 
 
 
